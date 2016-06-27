@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CPU Information Board</title>
+        <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <div class="text-right"><a href="/admin/login">Admin</a></div>
+        {% if announcement != null %}
+        <div class="banner">{{ announcement.title }}</div>
+        {% endif %}
+
+        <div class="announcements">
+            {% if announcement == null %}
+                <div class="notification error">
+                    <h1>Error</h1>
+                    <h3>We can't seem to find that announcement.</h3>
+                </div>
+            {% endif %}
+
+            {% if announcement != null %}
+            <div class="timestamp pull-right">Posted on: {{ announcement.timestamp | date('M d, Y H:m:s a') }} by {{ announcement.admin.fullname }}</div>
+            <div class="clearfix"></div>
+            <div class="announcement-item-emphasis-single">
+                <div class="announcement-content-emphasis-single">
+                    <img class="file-display-single" src="{{ announcement.file }}" />
+                    {{ announcement.content }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="navigator-clicker">
+            <a href="/"><button class="button primary">Back To Home</button></a>
+        </div>
+    </body>
+</html>

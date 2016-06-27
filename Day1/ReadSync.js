@@ -1,0 +1,6 @@
+var fs = require('fs')
+console.log("1")
+var data = fs.readFileSync("file.txt")
+console.log("2")
+console.log(data)
+console.log("3")

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ tweet.name }}</title>
+    <link rel="stylesheet" href="/style.css" media="screen" title="no title" charset="utf-8">
+    <style>
+    body {
+        background-image: url('{{ tweet.user.profile_background_image_url }}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="content-element-left">
+            <img class="profile-image" src="{{ tweet.user.profile_image_url }}" />
+        </div>
+        <div class="content-element-right">
+            <div>
+                <a class="pretty-link" href="http://www.twitter.com/{{ tweet.user.screen_name }}">
+                    <span class="screen-name">{{ tweet.user.name }}</span> @{{ tweet.user.screen_name }}
+                </a><span class="date">{{ tweet.created_at | date('M-d-Y H:m a') }}</span>
+            </div>
+            <div>
+                <div class="content-text-parent">
+                    {{ tweet.text }}
+                </div>
+                <div class="content-image-parent">
+                    {% if tweet.entities.media %}
+
+                    {% for media in tweet.entities.media %}
+                    <img class="content-image" src="{{ media.media_url }}" width="{{ media.sizes.thumb.w }}" height="{{ media.sizes.thumb.h }}" />
+                    {% endfor %}
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="extended-info">
+            <hr />
+            <div>♥ {{ tweet.favorite_count }} | ♺ {{ tweet.retweet_count }} | {% if tweet.favorited %}♥ Favorite!{% endif %} | {% if tweet.retweeted %}♺ Retweeted.{% endif %}
+            </div>
+            <hr />
+            {% if tweet.entities.urls.length != 0 %}
+            <h3>Links</h3>
+            {% for url in tweet.entities.urls %}
+            <p><a href="{{ url.expanded_url }}">{{ url.url }}</a></p>
+            {% endfor %}
+            <hr />
+            {% endif %}
+            {% if tweet.entities.user_mentions.length != 0 %}
+            <h3>Mentions</h3>
+            {% for mention in tweet.entities.user_mentions %}
+            <a href="http://www.twitter.com/{{ mention.screen_name }}">@{{ mention.screen_name }}</a>
+            {% endfor %}
+            <hr />
+            {% endif %}
+            {% if tweet.entities.hashtags.length != 0 %}
+            <h3>Hashtags</h3>
+            {% for hashtag in tweet.entities.hashtags %}
+            <a href="http://www.twitter.com/hashtag/{{ hashtag.text }}">#{{ hashtag.text }}</a>
+            {% endfor %}
+            <hr />
+            {% endif %}
+            <h3>User Details</h3>
+            <p>Name: {{ tweet.user.name }} | @{{ tweet.user.screen_name }}</p>
+            <p>Description: {{ tweet.user.description }}</p>
+            {% if tweet.user.location %}
+            <p>Location: {{ tweet.user.location }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

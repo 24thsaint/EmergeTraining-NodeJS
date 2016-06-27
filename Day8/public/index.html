@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CPU Information Board</title>
+        <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+        <script src="/js/timeticker.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="text-right"><a href="/admin/login">Admin</a></div>
+        <div class="banner flasher">CPU Information Board</div>
+
+        <div class="intro col-4">
+
+            <div id="frontpage-date-time" class="date-time-display-frontpage">
+                {{ date.toLocaleString() }}
+            </div>
+
+            <h2>Welcome to the Information Board of Central Philippine University!</h2>
+            <p>Here, you can find the latest news and announcements referring to Central Philippine
+                University and other help tools that you may need.</p>
+        </div>
+
+        <div class="announcements col-8">
+
+            {% if announcements == null %}
+            <div class="announcement-item">
+                <div class="announcement-title">
+                    No announcements yet
+                </div>
+                <div class="announcement-content">
+                    Please come back again next time!
+                </div>
+            </div>
+            {% endif %}
+
+            {% for announcement in announcements %}
+                <div class="announcement-item" onclick="window.location.href = '/announcement?id={{ announcement._id.toString() }}'">
+                    <div class="announcement-title">
+                        {{ announcement.title | title }}
+                    </div>
+                    <div class="announcement-content">
+                        {% if announcement.file %}
+                            <img class="file-display-single" src="{{ announcement.file }}" />
+                        {% endif %}
+                        {{ announcement.content }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="clearfix"></div>
+    </body>
+</html>

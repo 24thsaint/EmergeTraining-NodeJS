@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HOMEPAGE</title>
+    <style>
+    @keyframes blinkAnimate {
+        to {
+            background-color: none;
+        }
+        from {
+            background-color: lime;
+        }
+    }
+    #servertime-holder {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 30px;
+    }
+    .blink {
+        animation: blinkAnimate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    </style>
+
+    <script type="text/javascript">
+    function ajaxify() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/time', true);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                document.getElementById('servertime-holder').innerHTML = xhr.responseText;
+                document.getElementById('servertime-holder').classList.add("blink");
+            }
+        }
+        xhr.send();
+    }
+    function activateRealTimeClock() {
+        ajaxify(); // respond to user input right away!
+        setInterval(ajaxify, 1000); // request update loop every 1 second
+    }
+
+    window.onload = function() {
+        var activatorButton = document.getElementById("realTimeActivator");
+        activatorButton.onclick = function() {
+            activateRealTimeClock();
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="servertime-holder">Click "REQUEST SERVER TIME" button to request server time!</div>
+    <a href="/pretty-time"><button type="button">SHOW PRETTY TIME</button></a>
+    <button id="realTimeActivator" type="button">REQUEST SERVER TIME</button>
+</body>
+</html>

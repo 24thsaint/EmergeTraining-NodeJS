@@ -1,0 +1,35 @@
+{% extends 'admin-template.html' %}
+{% block scripts %}
+<script src="/js/registration.js" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<div class="banner">Administrator Registration</div>
+<div class="content">
+    <div class="floater">
+    <div id="notification"></div>
+
+    <form id="registrationForm">
+
+        <div class="fields">
+            <label class="label">Full Name</label><input type="text" class="textbox field" id="fullname" required />
+        </div>
+
+        <div class="fields">
+            <label class="label">Course</label><input type="text" class="textbox field" id="course" required />
+        </div>
+
+        <div class="fields">
+            <label class="label">Username</label><input type="text" class="textbox field" id="username" required />
+        </div>
+
+        <div class="fields">
+            <label class="label">Password</label><input type="password" class="textbox field" id="password" required />
+        </div>
+
+        <button type="submit" class="button primary col-5">Register</button>
+        <button type="reset" class="button warning col-5">Clear Form</button>
+        <div class="clearfix"></div>
+    </form>
+</div>
+{% endblock %}

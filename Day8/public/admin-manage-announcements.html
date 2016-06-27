@@ -1,0 +1,55 @@
+{% extends 'admin-template.html' %}
+{% block scripts %}
+<script src="/js/announcements-management.js" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div class="banner">Manage Announcements</div>
+    <div id="notification"></div>
+    {% if announcements != null %}
+    <div class="content" id="content-child">
+        <table class="table">
+            <thead>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Posted By</th>
+                <th>Modified</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+
+            <tbody>
+                {% for announcement in announcements %}
+                <tr>
+                    <td>{{ announcement.timestamp | date('M-d-Y H:m:s a') }}</td>
+                    <td><b>{{ announcement.title | title }}</b></td>
+                    <td>{{ announcement.admin.fullname }}</td>
+                    <td class="text-center">
+                        {% if announcement.edited %}
+                        {{ announcement.edited.fullname }} on <i>{{ announcement.editedOn | date('M-d-Y H:m:s a') }}</i>
+                        {% endif %}
+                        {% if !announcement.edited %}
+                        <i>No modifications yet</i>
+                        {% endif %}
+                    </td>
+                    <td><button type="button" class="button primary" onclick="edit('{{ announcement._id.toString() }}')">Edit</button></td>
+                    <td><button type="button" class="button warning" onclick="deleteAction('{{ announcement._id.toString() }}')">Delete</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% if announcements == null %}
+    <div id="content">
+        <div class="content pull-center">
+            <h2>No announcements yet!</h2>
+            <a href="http://localhost:1234/admin/announcement/add?access_token={{ accessToken }}"><button class="button primary">Start Here!</button></a>
+        </div>
+    </div>
+    {% endif %}
+
+    </div>
+    {% endblock %}

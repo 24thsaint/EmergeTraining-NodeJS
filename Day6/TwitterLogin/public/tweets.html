@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/style.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div class="user-id">
+        User #{{ profile.user_id }}
+    </div>
+
+    <div class="version-header">
+        <h1>TWEETER FEEDER, <i>bird edition v0.1-rc.underqualified-candidate</i></h1>
+    </div>
+
+    <div class="container">
+
+        <div class="box blinker-box">
+            <span class="greeting">Welcome, {{ profile.screen_name }}!</span>
+        </div>
+
+        {% for tweet in tweets %}
+        <div class="box" onclick="window.location.href = '/tweet/single?tweet_id={{ tweet.id_str }}'">
+            <div class="content-element-left">
+                <img class="profile-image" src="{{ tweet.user.profile_image_url }}" />
+            </div>
+            <div class="content-element-right">
+                <div>
+                    <a class="pretty-link" href="http://www.twitter.com/{{ tweet.user.screen_name }}">
+                        <span class="screen-name">{{ tweet.user.name }}</span> @{{ tweet.user.screen_name }}
+                    </a><span class="date">{{ tweet.created_at | date('M-d-Y H:m a') }}</span>
+                </div>
+                <div>
+                    <div class="content-text-parent">
+                        {{ tweet.text }}
+                    </div>
+                    <div class="content-image-parent">
+                        {% if tweet.entities.media %}
+
+                        {% for media in tweet.entities.media %}
+                        <img class="content-image" src="{{ media.media_url }}" width="{{ media.sizes.thumb.w }}" height="{{ media.sizes.thumb.h }}" />
+                        {% endfor %}
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LOGIN Page</title>
+    <link rel="stylesheet" type="text/css" href="semantic.css" />
+    <script src="semantic.js"></script>
+</head>
+<body>
+    <img src="eqela.png" height="100"/>
+    <div class="ui grid">
+        <div class="four wide column centered">
+            <form role="form" class="ui form" method="GET" action="#" onsubmit="dummy()">
+                <div class="field">
+                    <input type="text" id="username" name="username" placeholder="Username" /><br />
+                </div>
+                <div class="field">
+                    <input type="text" id="password" name="password" placeholder="Password" /><br />
+                </div>
+                <button type="submit" class="ui button">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+function dummy() {
+    event.preventDefault()
+    alert("Submitted!");
+}
+</script>
+
+</html>

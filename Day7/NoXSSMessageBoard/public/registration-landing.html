@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Registration</title>
+    </head>
+    <body>
+        {% if status == true %}
+            <h1>Congratulations, registration successful!</h1>
+            <a href="/">Return to home</a>
+        {% else %}
+            <h1>There was an error in registration.</h1>
+            <a href="/register">Return</a>
+        {% endif %}
+    </body>
+</html>

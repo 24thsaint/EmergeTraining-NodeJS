@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    {% block scripts %}
+    {% endblock %}
+</head>
+<body>
+    <input type="hidden" id="accessToken" value="{{ accessToken }}" />
+    <div class="container">
+        <div class="sidebar col-2">
+            <div class="greeting">Hello, {{ user.fullname }}!</div>
+            <ul class="sidebar-nav">
+                <a href="/admin?access_token={{ accessToken }}"><li>Summary</li></a>
+                <a href="/admin/announcement/add?access_token={{ accessToken }}"><li>Add Announcement</li></a>
+                <a href="/admin/announcements/manage?access_token={{ accessToken }}"><li>Manage Announcements</li></a>
+                <a href="/admin/registration?access_token={{ accessToken }}"><li>Register Admin</li></a>
+                <a href="/admin/logout?access_token={{ accessToken }}"><li>Logout</li></a>                
+            </ul>
+        </div>
+        <div class="col-10">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.box {
+    border: 1px solid black;
+    /*margin: 2px;*/
+    padding: 5px;
+    transition: background-color 1s;
+    transition: box-shadow 1s;
+    transition: margin 0.5s;
+    cursor: pointer;
+    display: block;
+}
+.box:hover {
+    background-color: #d3d6d8;
+    box-shadow: 5px 5px 15px grey;
+    margin: 20px;
+}
+.box[class=pretty-link]:hover {
+    color: blue;
+}
+.screen-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.pretty-link {
+    color: grey;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 1s;
+}
+.pretty-link:hover {
+    color: blue;
+}
+.content-element-left {
+    float: left;
+}
+.content-element-right {
+    /*float: right;*/
+    margin: 3px;
+    margin-left: 60px;
+}
+.date {
+    color: grey;
+    font-style: italic;
+    float: right;
+}
+.container {
+    width: 50%;
+    margin: auto;
+}
+.content-image {
+    border-radius: 25px;
+    border: 0.5px solid grey;
+}
+.content-text-parent {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.content-image-parent {
+
+}
+.profile-image {
+    border-radius: 10px;
+}

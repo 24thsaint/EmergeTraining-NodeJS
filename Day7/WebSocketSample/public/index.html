@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WEBSOCKET</title>
+    <link rel="stylesheet" href="test.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript">
+    var ws = null;
+    function init() {
+        var url = document.URL.replace("http://", "ws://")
+        ws = new WebSocket(url)
+        ws.onopen = function(evt) {}
+        ws.onclose = function(evt) {}
+        ws.onmessage = function(evt) {
+            var p = document.createElement("p")
+            p.innerHTML = evt.data
+            document.getElementById("output").appendChild(p)
+        }
+        ws.onerror = function(evt) {}
+    }
+    function send() {
+        ws.send(document.getElementById("input").value)
+    }
+    </script>
+</head>
+
+<body onload="init();">
+    <input type="text" name="input" id="input" value="">
+    <input type="button" name="send" value="send" onclick="send();">
+
+    <div id="output"></div>
+</body>
+</html>

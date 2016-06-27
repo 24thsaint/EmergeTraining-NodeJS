@@ -1,0 +1,42 @@
+<div class="banner">Edit Announcement</div>
+<div class="content">
+    <div class="floater">
+        <div id="notification"></div>
+
+        <div id="image-display" class="col-3">
+            {% if announcement.file %}
+                <img class="file-display-single" src="{{ announcement.file }}" />
+            {% endif %}
+        </div>
+
+        <div class="col-9">
+            <form id="announcementForm" onsubmit="announcementEditAction(event)">
+
+                <input type="hidden" id="announcementId" value="{{ announcement._id.toString() }}" />
+
+                <div class="fields">
+                    <label class="label">Announcement Title</label><input type="text" class="textbox field" id="title" value="{{ announcement.title | title}}" required />
+                </div>
+
+                <div class="fields">
+                    <label class="label">Content</label><textarea type="textarea" class="textbox field" id="text-content" rows="10" required>{{ announcement.content }}</textarea>
+                </div>
+
+                <div class="fields">
+                    <label class="label">Type</label><input type="text" class="textbox field" id="type" value="{{ announcement.type }}" required />
+                </div>
+
+                <div class="fields">
+                    <label class="label">Image</label><input type="file" class="textbox field" id="image" />
+                </div>
+
+                <button type="submit" class="button primary col-5">Edit Announcement</button>
+                <button type="reset" class="button warning col-5">Clear</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div class="banner">
+        {% if error %}
+            Oooops, error!
+        {% endif %}
+
+        {% if !error %}
+            Success!
+        {% endif %}
+    </div>
+    <div class="content">
+        {% if error %}
+        <div class="notification error">{{ message }}</div>
+        {% endif %}
+
+        {% if !error %}
+        <div class="notification success">{{ message }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

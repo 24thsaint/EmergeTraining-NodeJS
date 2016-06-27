@@ -1,0 +1,37 @@
+{% extends 'admin-template.html' %}
+
+{% block scripts %}
+<script src="/js/announcement.js" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<div class="banner">New Announcement</div>
+<div class="content">
+    <div class="floater">
+    <div id="notification"></div>
+
+    <form id="announcementForm">
+
+        <div class="fields">
+            <label class="label">Announcement Title</label><input type="text" class="textbox field" id="title" required />
+        </div>
+
+        <div class="fields">
+            <label class="label">Content</label><textarea type="textarea" class="textbox field" id="content" rows="10" required></textarea>
+        </div>
+
+        <div class="fields">
+            <label class="label">Type</label><input type="text" class="textbox field" id="type" required />
+        </div>
+
+        <div class="fields">
+            <label class="label">Image</label><input type="file" class="textbox field" id="image" />
+        </div>
+
+        <button type="submit" class="button primary col-5">Add Announcement</button>
+        <button type="reset" class="button warning col-5">Clear</button>
+        <div class="clearfix"></div>
+
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'admin-template.html' %}
+
+
+{% block content %}
+<div class="banner">Summary</div>
+<div class="content">
+    <div class="floater">
+        Current number of announcements: <b>{{ count }}</b>
+    </div>
+    <div class="floater">
+        <h3>Latest Announcement:</h3>
+        <div class="announcement-item-emphasis-summary" onclick="window.location.href = '/announcement?id={{ announcement._id.toString() }}'">
+            <div class="announcement-title">
+                {{ announcement.title | title }}
+            </div>
+            <div class="announcement-content">
+                {% if announcement.file %}
+                    <img class="file-display-single" src="{{ announcement.file }}" />
+                {% endif %}
+                {{ announcement.content }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

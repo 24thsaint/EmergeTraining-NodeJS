@@ -1,0 +1,20 @@
+#messages {
+    border: 5px solid black;
+}
+
+#form-container{
+    margin-top: 20px;
+}
+
+.userText {
+    background-color: skyblue;
+}
+
+.item {
+    padding: 5px;
+    border: 1px dotted black;
+}
+
+.item:hover {
+    background-color: gray;
+}
